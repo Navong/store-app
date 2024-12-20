@@ -38,7 +38,11 @@ export async function POST(request: Request) {
       where: { productId: parseInt(productId) },
     });
     const avgRating =
+<<<<<<< HEAD
       reviews.reduce((total: number, rev: { rating: number }) => total + rev.rating, 0) / reviews.length;
+=======
+      reviews.reduce((total, rev) => total + rev.rating, 0) / reviews.length;
+>>>>>>> e1e6e3d78cf15cb3aaaae8632875f74b3188f30b
 
     await prisma.product.update({
       where: { id: parseInt(productId) },
