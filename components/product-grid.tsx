@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { Star } from 'lucide-react';
 import {
@@ -54,7 +56,8 @@ const ProductGrid = ({ products, itemsPerPage = 6 }: { products: PageProps[]; it
 
     // Generate page numbers for pagination
     const generatePaginationItems = () => {
-        let items = [];
+        const items: React.JSX.Element[] = [];
+        console.log(items);
 
         // Always show first page
         items.push(

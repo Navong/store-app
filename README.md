@@ -5,6 +5,21 @@
  - Implement sync between state using Redux
  - Popup notification using Toast
  - Custom hooks for Database fetching
+ - React's State Management
+ - Filtering System
+ - Debounded Operations (Prevents unneccessary rerenders)
+
+    ```js
+    useEffect(() => {
+    setIsSearching(true);
+    const timer = setTimeout(() => {
+        setDebouncedSearchQuery(searchQuery);
+        setIsSearching(false);
+    }, 300);
+    return () => clearTimeout(timer);
+    }, [searchQuery]);
+    ```
+
 ### Tech Stack
  - Next.js
  - Tailwind

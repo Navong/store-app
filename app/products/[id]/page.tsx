@@ -1,6 +1,8 @@
 // app/products/[id]/page.tsx
 import ProductDetail from '@/components/product-detail';
 import { getProductById } from '@/lib/api';
+import { Suspense } from 'react';
+import { ProductDetailSkeleton } from '../../../components/loading';
 
 
 
@@ -15,5 +17,9 @@ export default async function ProductPage({ params }: {
     return <div>Product not found</div>;
   }
 
-  return <ProductDetail product={product} page={page} />;
+  return (
+    <Suspense fallback={<ProductDetailSkeleton />}>
+      <ProductDetail product={product} page={page} />
+    </Suspense>
+  )
 }

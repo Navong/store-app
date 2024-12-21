@@ -15,10 +15,13 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
 import Navbar from './navbar';
+import { PaymentModal } from './payment-modal';
+import Image from 'next/image';
 
 export default function ShoppingCartPage() {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const shipping = 10;
@@ -54,7 +57,7 @@ export default function ShoppingCartPage() {
                   {cartItems.map(item => (
                     <div key={item.id}>
                       <div className="flex flex-col sm:flex-row gap-4">
-                        <img
+                        <Image
                           src={item.imageUrl}
                           alt={item.name}
                           className="h-20 w-20 rounded-lg object-cover"
@@ -137,9 +140,18 @@ export default function ShoppingCartPage() {
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <Button className="w-full" size="lg">
-                    <CreditCard className="h-4 w-4 mr-2" />
-                    Checkout
+                  <Button asChild size="lg" className="w-full">
+                    {cartItems.length > 0 ? (
+                      <>
+                        <Button size="lg" className="w-full" onClick={() => setIsModalOpen(true)}>
+                          <CreditCard className="h-5 w-5 mr-2" />
+                          Proceed to Payment
+                        </Button>
+                        <PaymentModal open={isModalOpen} onOpenChange={setIsModalOpen} />
+                      </>
+                    ) : (
+                      <span>Cart is empty</span>
+                    )}
                   </Button>
                 </CardFooter>
               </Card>

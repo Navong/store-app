@@ -24,7 +24,7 @@ export default function RootLayout({
           <div className="min-h-screen bg-gray-100">
             {/* <Header /> */}
             {children}
-            <Toaster />
+            <Toaster position='top-center'/>
           </div>
         </Providers>
       </body>
