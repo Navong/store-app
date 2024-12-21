@@ -21,6 +21,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '@/components/navbar';
 import { useFetchProducts } from '@/lib/hooks/useFetchProduct';
+import Head from 'next/head';
 
 interface Product {
   id: number;
@@ -75,39 +76,50 @@ const ProductCardSkeleton = () => (
 
 // Separate ProductCard component for better performance
 const ProductCard = React.memo(({ product }: { product: Product }) => (
-  <Link href={`/products/${product.id}`} className="block">
-    <Card className="block overflow-hidden transition-transform hover:scale-[1.02]">
-      <CardContent className="p-0 relative aspect-[2/1]">
-        <Image
-          src={product.imageUrl}
-          alt={product.name}
-          fill
-          className="object-cover"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          placeholder="blur"
-          blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(400, 200))}`}
-          priority={false} // Only set priority for above-the-fold images
-        />
-      </CardContent>
-      <CardHeader>
-        <div className="flex justify-between items-start">
-          <CardTitle className="text-lg line-clamp-2">{product.name}</CardTitle>
-        </div>
-      </CardHeader>
-      <CardFooter className="flex flex-col gap-4">
-        <div className="flex items-center justify-between w-full">
-          <span className="text-lg font-bold">${product.price}</span>
-          <div className="flex items-center">
-            <Star className="h-4 w-4 text-yellow-400 fill-current" />
-            <span className="ml-1 text-sm text-muted-foreground">
-              {product.rating}
-            </span>
+  <>
+    <Head>
+      <title>{product.name} - Buy Online</title>
+      <meta name="description" content={product.description} />
+      <meta property="og:title" content={product.name} />
+      <meta property="og:description" content={product.description} />
+      <meta property="og:image" content={product.imageUrl} />
+      <meta name="robots" content="index, follow" />
+      <link rel="canonical" href={`https://store-app-gamma-sepia.vercel.app/products/${product.id}`} />
+    </Head>
+    <Link href={`/products/${product.id}`} className="block">
+      <Card className="block overflow-hidden transition-transform hover:scale-[1.02]">
+        <CardContent className="p-0 relative aspect-[2/1]">
+          <Image
+            src={product.imageUrl}
+            alt={product.name}
+            fill
+            className="object-cover"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            placeholder="blur"
+            blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(400, 200))}`}
+            priority={false} // Only set priority for above-the-fold images
+          />
+        </CardContent>
+        <CardHeader>
+          <div className="flex justify-between items-start">
+            <CardTitle className="text-lg line-clamp-2">{product.name}</CardTitle>
           </div>
-        </div>
-        <Button className="w-full">View Product</Button>
-      </CardFooter>
-    </Card>
-  </Link>
+        </CardHeader>
+        <CardFooter className="flex flex-col gap-4">
+          <div className="flex items-center justify-between w-full">
+            <span className="text-lg font-bold">${product.price}</span>
+            <div className="flex items-center">
+              <Star className="h-4 w-4 text-yellow-400 fill-current" />
+              <span className="ml-1 text-sm text-muted-foreground">
+                {product.rating}
+              </span>
+            </div>
+          </div>
+          <Button className="w-full">View Product</Button>
+        </CardFooter>
+      </Card>
+    </Link>
+  </>
 ));
 
 ProductCard.displayName = 'ProductCard';
@@ -239,6 +251,7 @@ export default function ProductListing() {
 
   return (
     <div className="min-h-screen bg-background">
+
       <Navbar FiltersContent={FiltersContent} />
       <main className="max-w-7xl mx-auto px-4 py-8">
         {/* Search Bar - Moved to top of page */}

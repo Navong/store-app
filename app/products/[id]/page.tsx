@@ -4,7 +4,6 @@ import { Suspense } from 'react';
 import { ProductDetailSkeleton } from '../../../components/loading';
 
 
-
 export default async function ProductPage({ params }: {
   params: Promise<{ id: string, page: string }>;
 }) {
