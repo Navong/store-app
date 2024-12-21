@@ -12,12 +12,25 @@ interface Product {
     createdAt: string;
 }
 
-export const useFetchProducts = () => {
+/**
+ * Fetches a list of products from the API.
+ * @returns A tuple containing the fetched products, a boolean indicating if the data is still loading, and an error message if any.
+ */
+export const useFetchProducts = (): {
+    items: Product[];
+    isLoading: boolean;
+    error: string | null;
+} => {
     const [items, setItems] = useState<Product[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
+        /**
+         * Fetches the products from the API.
+         * If the request fails, sets the error state and logs the error to the console.
+         * If the request succeeds, sets the items state with the fetched products.
+         */
         const fetchProducts = async () => {
             try {
                 const response = await fetch("/api/products");

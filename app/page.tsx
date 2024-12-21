@@ -289,25 +289,6 @@ export default function ProductListing() {
                 </SelectContent>
               </Select>
             </div>
-
-            {/* Loading State */}
-
-            {/* {isLoading && (
-              <div className="text-center py-8">
-                <p>Loading products...</p>
-              </div>
-            )} */}
-
-            {/* No Results State */}
-            {/* 
-            {!isLoading && filteredProducts.length === 0 && (
-              <div className="text-center py-8">
-                <p>No products found. Try adjusting your search or filters.</p>
-              </div>
-            )} */}
-
-            {/* Products Grid */}
-            {/* Product grid with consistent spacing and dimensions */}
             <div
               className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
             >

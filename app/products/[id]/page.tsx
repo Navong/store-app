@@ -1,4 +1,3 @@
-// app/products/[id]/page.tsx
 import ProductDetail from '@/components/product-detail';
 import { getProductById } from '@/lib/api';
 import { Suspense } from 'react';
@@ -19,7 +18,7 @@ export default async function ProductPage({ params }: {
 
   return (
     <Suspense fallback={<ProductDetailSkeleton />}>
-      <ProductDetail product={product} page={page} />
+      <ProductDetail product={product}/>
     </Suspense>
   )
 }
