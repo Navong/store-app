@@ -25,14 +25,6 @@ import Navbar from './navbar';
 import { addToCart } from '@/lib/features/cartSlice';
 import Head from 'next/head';
 
-interface Review {
-    id: number;
-    comment: string;
-    rating: number;
-    userName: string;
-    date: Date;
-}
-
 interface Product {
     id: number;
     name: string;

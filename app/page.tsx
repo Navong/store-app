@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { useQuery } from "@tanstack/react-query";
 import {
   Select,
   SelectContent,
@@ -23,7 +22,6 @@ import Image from 'next/image';
 import Navbar from '@/components/navbar';
 import { useFetchProducts } from '@/lib/hooks/useFetchProduct';
 import Head from 'next/head';
-import { fetchProducts } from '@/lib/hooks/useProducts';
 
 interface Product {
   id: number;

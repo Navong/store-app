@@ -3,19 +3,12 @@ import { getProductById } from '@/lib/api';
 import { Suspense } from 'react';
 import { ProductDetailSkeleton } from '../../../components/loading';
 
-type Product = {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  imageUrl: string;
-  rating: number;
-  details?: string;
-}
 
-export default async function ProductPage({ params }: { params: { id: string } }) {
-  const paramId = await params;
-  const product: Product | null = await getProductById(parseInt(paramId.id));
+export default async function ProductPage({ params }: {
+  params: Promise<{ id: string, page: string }>;
+}) {
+  const proId = (await params).id;
+  const product = await getProductById(parseInt(proId));
 
   if (!product) {
     return <div>Product not found</div>;
@@ -23,8 +16,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
 
   return (
     <Suspense fallback={<ProductDetailSkeleton />}>
-      <ProductDetail product={product} />
+      <ProductDetail product={product}/>
     </Suspense>
-  );
+  )
 }
-

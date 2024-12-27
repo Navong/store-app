@@ -20,7 +20,6 @@ import {
 import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '@/components/navbar';
-import { useFetchProducts } from '@/lib/hooks/useFetchProduct';
 import Head from 'next/head';
 import { fetchProducts } from '@/lib/hooks/useProducts';
 
