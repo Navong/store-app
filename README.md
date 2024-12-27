@@ -9,6 +9,7 @@
  - Filtering System
  - Debounded Operations (Prevents unneccessary rerenders)
 
+
     ```js
     useEffect(() => {
     setIsSearching(true);
