@@ -28,6 +28,13 @@
  - prisma
  - postgres
  - vercel
- - typescript
+ - typescript 
+
+
+
 ### Project Demonstrate
+
+https://github.com/user-attachments/assets/9e884210-1d11-4575-9cd1-f9c21f130a69
+
 ### Deployment
+![Website Deploy](https://deploy-badge.vercel.app/?url=https://store-app-git-main-navongs-projects.vercel.app/&name=MyStore)
