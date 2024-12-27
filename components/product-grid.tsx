@@ -57,7 +57,7 @@ const ProductGrid = ({ products, itemsPerPage = 6 }: { products: PageProps[]; it
     // Generate page numbers for pagination
     const generatePaginationItems = () => {
         const items: React.JSX.Element[] = [];
-        console.log(items);
+        // console.log(items);
 
         // Always show first page
         items.push(

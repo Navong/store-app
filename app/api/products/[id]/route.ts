@@ -9,11 +9,11 @@ export const redis = new Redis({
 })
 
 
-export async function GET() {
+export async function GET(params: { params: { id: string } }) {
 
     try {
 
-        const cacheKey = `products`;
+        const cacheKey = `products:${params.params.id}`;
 
         // Step 1: Check Redis Cache
         const cachedProduct = await redis.get(cacheKey);
@@ -22,9 +22,10 @@ export async function GET() {
             console.log('Cache Hit'); // Log cached data
             return NextResponse.json(cachedProduct); // Return cached product
         }
+        
         const products = await prisma.product.findMany({
-            orderBy: {
-                rating: "desc",
+            where: {
+                id: Number(params.params.id),
             },
         });
 

@@ -4,11 +4,10 @@ export interface Product {
     name: string;
     price: number;
     description: string;
-    imgdata: string;
+    imageUrl: string;
     category: string;
     rating: number;
     reviews: Review[];
-    stock: number;
   }
   
   export interface Review {

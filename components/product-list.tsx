@@ -1,5 +1,4 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-
 "use client";
 
 import React, { useEffect } from 'react';
@@ -135,14 +134,12 @@ export default function ProductListing() {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [debouncedSearchQuery, setDebouncedSearchQuery] = React.useState('');
 
-  // const { data: fetchedProducts = [], isLoading } = useQuery({
-  //   queryKey: ["products"], // Query key
-  //   queryFn: fetchProducts // Fetch function
-  // });
+  const { data: fetchedProducts = [], isLoading } = useQuery({
+    queryKey: ["products"], // Query key
+    queryFn: fetchProducts // Fetch function
+  });
 
-
-
-  const { items: fetchedProducts, isLoading } = useFetchProducts();
+  // const { items: fetchedProducts, isLoading } = useFetchProducts();
   // Debounce search query
   useEffect(() => {
     const timer = setTimeout(() => {

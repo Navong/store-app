@@ -41,8 +41,10 @@ interface Product {
     imageUrl: string;
     rating: number;
     details?: string;
-    reviews: Review[];
+    // reviews: Review[];
 }
+
+
 
 const ProductImage = ({ url, name }: { url: string; name: string }) => (
     <div className="aspect-square overflow-hidden rounded-lg bg-muted">
